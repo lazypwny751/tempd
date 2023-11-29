@@ -8,7 +8,7 @@ build:
 	$(CC) mkdir.c -o mkdir
 
 install:
-	echo ok
+	@echo ok
 
 clean:
 	rm -vf mkdir

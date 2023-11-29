@@ -1,7 +1,7 @@
 #!/bin/bash
 
 tempd.create() {
-	local beforequit="print" DIGIT="5" PREFIX="tmp"
+	local beforequit="print" DIGIT="5" PREFIX="tmp" LOCATION="/tmp"
 
 	if ! command -v "mkdir" &> /dev/null ; then
 		echo "command \"mkdir\" not found, please resolve that requirement."
@@ -93,6 +93,13 @@ tempd.create() {
 					shift
 				fi
 			;;
+			("location"|"l")
+				shift
+				if [[ -n "${1}" ]] ; then
+					local LOCATION="${1}"
+					shift
+				fi
+			;;
 			("export"|"e")
 				shift
 				local beforequit="export"
@@ -111,17 +118,17 @@ tempd.create() {
 	done
 
 	local rand="${PREFIX}.$(gen.randend "${DIGIT}")" # initial definition
-	until [[ ! -d "/tmp/${rand}" ]] ; do
+	until [[ ! -d "${LOCATION}/${rand}" ]] ; do
 		local rand="${PREFIX}.$(gen.randend "${DIGIT}")" # regeneration definition
 	done
 
-	mkdir -p "/tmp/${rand}" && {
+	mkdir -p "${LOCATION}/${rand}" && {
 		case "${beforequit}" in
 			("export")
-				export TEMPD="/tmp/${rand}"
+				export TEMPD="${LOCATION}/${rand}"
 			;;
 			(*)
-				echo "/tmp/${rand}"
+				echo "${LOCATION}/${rand}"
 			;;
 		esac
 	} || {
