@@ -11,7 +11,7 @@ uninstall:
 	rm -vf $(LIBDIR)/tempd.sh $(BINDIR)/tempd
 
 missing:
-	$(MAKE) -C src
+	$(MAKE) -C missing/*
 
 reinstall: uninstall install
 
