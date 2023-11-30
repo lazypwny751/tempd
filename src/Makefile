@@ -8,7 +8,7 @@ build:
 	$(CC) mkdir.c -o mkdir
 
 install:
-	@echo ok
+	install -vm 755 mkdir $(BINDIR)/mkdir
 
 clean:
 	rm -vf mkdir

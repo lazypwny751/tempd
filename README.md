@@ -13,7 +13,7 @@ sudo make all
 ## Usage
 you can source the library in a shell script also you use it directly.
 ```sh
-. /usr/local/lib/bash/5.1/tempd.sh
+source /usr/local/lib/bash/5.1/tempd.sh
 tempd.create export
 rm -rf "${TEMPD}"
 export TEMPD="$(tempd.create)"

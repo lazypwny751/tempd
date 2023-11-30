@@ -15,7 +15,6 @@ enum OPT {
 };
 
 // Functions (blocks)
-
 void Add2Arr(unsigned char **arr, const unsigned char *val) {
     size_t currentSize = *arr ? strlen(*arr) : 0;
     size_t valueSize = strlen(val);
